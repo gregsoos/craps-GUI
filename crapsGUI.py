@@ -21,6 +21,7 @@ class CrapsGUI(EasyFrame):
         self.play = Player()
         self.dieImageLabel1 = self.addLabel('', row=0, column=0, sticky='NSEW')
         self.dieImageLabel2 = self.addLabel('', row=0, column=1, sticky='NSEW', columnspan=2)
+        self.dieImage1 = self.dieImage2 = PhotoImage()
         self.outputArea = self.addTextArea("", row=1, column=0, columnspan=2, wrap='char')  # Adds scroll bar to text.
         self.addButton(row=2, column=0, text='Roll', command=self.nextRoll)
         self.addButton(text='New game', row=2, column=1, command=self.newGame)
@@ -50,8 +51,10 @@ class CrapsGUI(EasyFrame):
         """Set dice images in GUI."""
         fileName1 = 'DICE/' + str(self.play.die1) + '.gif'
         fileName2 = 'DICE/' + str(self.play.die2) + '.gif'
-        self.dieImageLabel1['image'] = PhotoImage(file=fileName1)
-        self.dieImageLabel2['image'] = PhotoImage(file=fileName2)
+        self.dieImage1 = PhotoImage(file=fileName1)
+        self.dieImage2 = PhotoImage(file=fileName2)
+        self.dieImageLabel1['image'] = self.dieImage1
+        self.dieImageLabel2['image'] = self.dieImage2
 
 
 def main():
